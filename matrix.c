@@ -29,8 +29,14 @@ Returns: The translation matrix creates using x, y and z
 as the scale factors
 ====================*/
 struct matrix * make_scale(double x, double y, double z) {
-  return NULL;
+  struct matrix *ret = new_matrix(4,4);
+  ident(ret);
+  ret -> m[0][0] = x;
+  ret -> m[1][1] = y;
+  ret -> m[2][2] = z;
+  return ret;
 }
+
 
 /*======== struct matrix * make_rotX() ==========
 Inputs:  double theta
@@ -39,7 +45,12 @@ Returns: The rotation matrix created using theta as the
 angle of rotation and X as the axis of rotation.
 ====================*/
 struct matrix * make_rotX(double theta) {
-  return NULL;
+  struct matrix *ret = new_matrix(4,4);
+  ident(ret);
+  ret -> m[0][0] = x;
+  ret -> m[1][1] = y;
+  ret -> m[2][2] = z;
+  return ret;
 }
 
 /*======== struct matrix * make_rotY() ==========
