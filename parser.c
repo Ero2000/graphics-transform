@@ -69,6 +69,41 @@ void parse_file ( char * filename,
   while ( fgets(line, 255, f) != NULL ) {
     line[strlen(line)-1]='\0';
     printf(":%s:\n",line);
+    if (strcmp(line,"line") == 0){
+      fgets(line,255,f);
+      int x0,y0,z0,x1,y1,z1;
+      x0 = atoi(strsep(line," "));
+      y0 = atoi(strsep(line," "));
+      z0 = atoi(strsep(line," "));
+      x1 = atoi(strsep(line," "));
+      y1 = atoi(strsep(line," "));
+      z1 = atoi(strsep(line," "));
+      add_edge(x0,y0,z0,x1,y1,z1);
+    }
+    else if(strcmp(line,"ident") == 0){
+
+    }
+    else if(strcmp(line,"scale") == 0){
+
+    }
+    else if(strcmp(line,"translate") == 0){
+
+    }
+    else if(strcmp(line,"rotate") == 0){
+
+    }
+    else if(strcmp(line,"apply") == 0){
+
+    }
+    else if(strcmp(line,"display") == 0){
+
+    }
+    else if(strcmp(line,"save") == 0){
+
+    }
+    else if(strcmp(line,"quit") == 0){
+
+    }
   }
 }
   

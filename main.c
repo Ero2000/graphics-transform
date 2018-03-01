@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
   transtest = make_translate(5,4,3);
 
   print_matrix(transtest);
-  /*
+  
   if ( argc == 2 )
     parse_file( argv[1], transform, edges, s );
   else
@@ -29,5 +29,4 @@ int main(int argc, char **argv) {
   
   free_matrix( edges );
   free_matrix( transform );
-  */
 }  

@@ -49,7 +49,7 @@ struct matrix * make_rotX(double theta) {
   ident(ret);
   ret -> m[1][1] = cos(theta);
   ret -> m[1][2] = -sin(theta);
-  ret -> m[2][1] = sin(theta)
+  ret -> m[2][1] = sin(theta);
   ret -> m[2][2] = cos(theta);
   return ret;
 }
