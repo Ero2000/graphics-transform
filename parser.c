@@ -60,6 +60,10 @@ void parse_file ( char * filename,
   FILE *f;
   char line[256];
   clear_screen(s);
+  color c;
+  c.red = 30;
+  c.blue = 50;
+  c.green = 70;
 
   if ( strcmp(filename, "stdin") == 0 ) 
     f = stdin;
@@ -72,12 +76,12 @@ void parse_file ( char * filename,
     if (strcmp(line,"line") == 0){
       fgets(line,255,f);
       int x0,y0,z0,x1,y1,z1;
-      x0 = atoi(strsep(line," "));
-      y0 = atoi(strsep(line," "));
-      z0 = atoi(strsep(line," "));
-      x1 = atoi(strsep(line," "));
-      y1 = atoi(strsep(line," "));
-      z1 = atoi(strsep(line," "));
+      x0 = atoi(strsep(&line," "));
+      y0 = atoi(strsep(&line," "));
+      z0 = atoi(strsep(&line," "));
+      x1 = atoi(strsep(&line," "));
+      y1 = atoi(strsep(&line," "));
+      z1 = atoi(strsep(&line," "));
       add_edge(edges,x0,y0,z0,x1,y1,z1);
     }
     else if(strcmp(line,"ident") == 0){
@@ -87,17 +91,17 @@ void parse_file ( char * filename,
     else if(strcmp(line,"scale") == 0){
       fgets(line,255,f);
       int x,y,z;
-      x = atoi(strsep(line," "));
-      y = atoi(strsep(line," "));
-      z = atoi(strsep(line," "));
+      x = atoi(strsep(&line," "));
+      y = atoi(strsep(&line," "));
+      z = atoi(strsep(&line," "));
       matrix_mult(make_scale(x,y,z), transform);
     }
     else if(strcmp(line,"translate") == 0){
       fgets(line,255,f);
       int x,y,z;
-      x = atoi(strsep(line," "));
-      y = atoi(strsep(line," "));
-      z = atoi(strsep(line," "));
+      x = atoi(strsep(&line," "));
+      y = atoi(strsep(&line," "));
+      z = atoi(strsep(&line," "));
       matrix_mult(make_translate(x,y,z), transform);
     }
     else if(strcmp(line,"rotate") == 0){
@@ -105,16 +109,16 @@ void parse_file ( char * filename,
       char check;
       double theta;
       check = strsep(line," ");
-      if (strcmp(check,"x")){
-	theta = atoi(strsep(line," ")) * (M_PI);
+      if (strcmp(check,"x") == 0){
+	theta = atoi(strsep(&line," "));
 	matrix_mult(make_rotX(theta), transform);
       }
-      else if (strcmp(check,"y")){
-	theta = atoi(strsep(line," ")) * (M_PI);
+      else if (strcmp(check,"y") == 0){
+	theta = atoi(strsep(&line," "));
 	matrix_mult(make_rotY(theta), transform);
       }
-      else if (strcmp(check,"z")){
-	theta = atoi(strsep(line," ")) * (M_PI);
+      else if (strcmp(check,"z") == 0){
+	theta = atoi(strsep(&line," "));
 	matrix_mult(make_rotZ(theta), transform);
       }
     }
@@ -123,13 +127,16 @@ void parse_file ( char * filename,
       matrix_mult(transform, edges);
     }
     else if(strcmp(line,"display") == 0){
-
+      fgets(line,255,f);
+      display(s);
     }
     else if(strcmp(line,"save") == 0){
-
+      fgets(line,255,f);
+      draw_lines(edges, s, c);
+      save_extension(s, filename);
     }
     else if(strcmp(line,"quit") == 0){
-
+      return;
     }
   }
 }

@@ -47,10 +47,12 @@ angle of rotation and X as the axis of rotation.
 struct matrix * make_rotX(double theta) {
   struct matrix *ret = new_matrix(4,4);
   ident(ret);
-  ret -> m[1][1] = cos(theta);
-  ret -> m[1][2] = -sin(theta);
-  ret -> m[2][1] = sin(theta);
-  ret -> m[2][2] = cos(theta);
+  double realT;
+  realT = theta * (M_PI/180);
+  ret -> m[1][1] = cos(realT);
+  ret -> m[1][2] = -sin(realT);
+  ret -> m[2][1] = sin(realT);
+  ret -> m[2][2] = cos(realT);
   return ret;
 }
 
@@ -63,10 +65,12 @@ angle of rotation and Y as the axis of rotation.
 struct matrix * make_rotY(double theta) {
   struct matrix *ret = new_matrix(4,4);
   ident(ret);
-  ret -> m[0][0] = cos(theta);
-  ret -> m[0][2] = sin(theta);
-  ret -> m[2][0] = -sin(theta);
-  ret -> m[2][2] = cos(theta);
+  double realT;
+  realT = theta * (M_PI/180);
+  ret -> m[0][0] = cos(realT);
+  ret -> m[0][2] = sin(realT);
+  ret -> m[2][0] = -sin(realT);
+  ret -> m[2][2] = cos(realT);
   return ret;
 }
 
@@ -79,10 +83,12 @@ angle of rotation and Z as the axis of rotation.
 struct matrix * make_rotZ(double theta) {
   struct matrix *ret = new_matrix(4,4);
   ident(ret);
-  ret -> m[0][0] = cos(theta);
-  ret -> m[0][1] = -sin(theta);
-  ret -> m[1][0] = sin(theta);
-  ret -> m[1][1] = cos(theta);
+  double realT;
+  realT = theta * (M_PI/180);
+  ret -> m[0][0] = cos(realT);
+  ret -> m[0][1] = -sin(realT);
+  ret -> m[1][0] = sin(realT);
+  ret -> m[1][1] = cos(realT);
   return ret;
 }
 
