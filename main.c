@@ -36,12 +36,12 @@ int main(int argc, char **argv) {
   transtest = make_rotZ(15);
   print_matrix(transtest);
   printf("\n");
-  /*
+  
   if ( argc == 2 )
     parse_file( argv[1], transform, edges, s );
   else
     parse_file( "stdin", transform, edges, s );
-  */
+  
   
   free_matrix( edges );
   free_matrix( transform );

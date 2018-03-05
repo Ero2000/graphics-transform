@@ -63,7 +63,7 @@ void parse_file ( char * filename,
   color c;
   c.red = 30;
   c.blue = 50;
-  c.green = 70;
+  c.green = 200;
 
   if ( strcmp(filename, "stdin") == 0 ) 
     f = stdin;
@@ -75,68 +75,58 @@ void parse_file ( char * filename,
     printf(":%s:\n",line);
     if (strcmp(line,"line") == 0){
       fgets(line,255,f);
-      int x0,y0,z0,x1,y1,z1;
-      x0 = atoi(strsep(&line," "));
-      y0 = atoi(strsep(&line," "));
-      z0 = atoi(strsep(&line," "));
-      x1 = atoi(strsep(&line," "));
-      y1 = atoi(strsep(&line," "));
-      z1 = atoi(strsep(&line," "));
+      double x0,y0,z0,x1,y1,z1;
+      sscanf(line, "%lf %lf %lf %lf %lf %lf", &x0, &y0, &z0, &x1, &y1, &z1);
+      printf(":%lf %lf %lf %lf %lf %lf:\n", x0, y0, z0, x1, y1, z1);
       add_edge(edges,x0,y0,z0,x1,y1,z1);
     }
     else if(strcmp(line,"ident") == 0){
-      fgets(line,255,f);
       ident(transform);
     }
     else if(strcmp(line,"scale") == 0){
       fgets(line,255,f);
-      int x,y,z;
-      x = atoi(strsep(&line," "));
-      y = atoi(strsep(&line," "));
-      z = atoi(strsep(&line," "));
-      matrix_mult(make_scale(x,y,z), transform);
+      double sx,sy,sz;
+      sscanf(line, "%lf %lf %lf", &sx, &sy, &sz);
+      matrix_mult(make_scale(sx,sy,sz), transform);
     }
-    else if(strcmp(line,"translate") == 0){
+    else if(strcmp(line,"move") == 0){
       fgets(line,255,f);
-      int x,y,z;
-      x = atoi(strsep(&line," "));
-      y = atoi(strsep(&line," "));
-      z = atoi(strsep(&line," "));
-      matrix_mult(make_translate(x,y,z), transform);
+      double tx,ty,tz;
+      sscanf(line, "%lf %lf %lf", &tx, &ty, &tz);
+      matrix_mult(make_translate(tx,ty,tz), transform);
     }
     else if(strcmp(line,"rotate") == 0){
       fgets(line,255,f);
       char check;
       double theta;
-      check = strsep(line," ");
-      if (strcmp(check,"x") == 0){
-	theta = atoi(strsep(&line," "));
+      sscanf(line, "%c %lf", &check, &theta);
+      if (check == 'x'){
 	matrix_mult(make_rotX(theta), transform);
       }
-      else if (strcmp(check,"y") == 0){
-	theta = atoi(strsep(&line," "));
+      else if (check == 'y'){
 	matrix_mult(make_rotY(theta), transform);
       }
-      else if (strcmp(check,"z") == 0){
-	theta = atoi(strsep(&line," "));
+      else if (check == 'z'){
 	matrix_mult(make_rotZ(theta), transform);
       }
     }
     else if(strcmp(line,"apply") == 0){
-      fgets(line,255,f);
       matrix_mult(transform, edges);
     }
     else if(strcmp(line,"display") == 0){
-      fgets(line,255,f);
+      clear_screen(s);
+      draw_lines(edges, s, c);
       display(s);
     }
     else if(strcmp(line,"save") == 0){
-      fgets(line,255,f);
+      char * save_file = malloc(64);
       draw_lines(edges, s, c);
-      save_extension(s, filename);
+      fgets(line, 255, f);
+      sscanf(line, "%s", save_file);
+      save_extension(s, save_file);
     }
     else if(strcmp(line,"quit") == 0){
-      return;
+      exit(0);
     }
   }
 }

@@ -50,7 +50,7 @@ struct matrix * make_rotX(double theta) {
   double realT;
   realT = theta * (M_PI/180);
   ret -> m[1][1] = cos(realT);
-  ret -> m[1][2] = -sin(realT);
+  ret -> m[1][2] = -1*sin(realT);
   ret -> m[2][1] = sin(realT);
   ret -> m[2][2] = cos(realT);
   return ret;
@@ -68,8 +68,8 @@ struct matrix * make_rotY(double theta) {
   double realT;
   realT = theta * (M_PI/180);
   ret -> m[0][0] = cos(realT);
-  ret -> m[0][2] = sin(realT);
-  ret -> m[2][0] = -sin(realT);
+  ret -> m[0][2] = -1*sin(realT);
+  ret -> m[2][0] = sin(realT);
   ret -> m[2][2] = cos(realT);
   return ret;
 }
@@ -86,7 +86,7 @@ struct matrix * make_rotZ(double theta) {
   double realT;
   realT = theta * (M_PI/180);
   ret -> m[0][0] = cos(realT);
-  ret -> m[0][1] = -sin(realT);
+  ret -> m[0][1] = -1*sin(realT);
   ret -> m[1][0] = sin(realT);
   ret -> m[1][1] = cos(realT);
   return ret;
