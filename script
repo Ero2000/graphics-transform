@@ -60,5 +60,6 @@ line
 150 80 100 200 0 100
 rotate
 z 20
+apply
 save
 pic.png
