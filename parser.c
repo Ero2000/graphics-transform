@@ -113,6 +113,7 @@ void parse_file ( char * filename,
     }
     else if(strcmp(line,"apply") == 0){
       matrix_mult(transform, edges);
+	  ident(transform);
     }
     else if(strcmp(line,"display") == 0){
       clear_screen(s);
