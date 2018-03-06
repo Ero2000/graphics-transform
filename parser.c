@@ -100,6 +100,7 @@ void parse_file ( char * filename,
       char check;
       double theta;
       sscanf(line, "%c %lf", &check, &theta);
+	  theta = theta * (M_PI / 180);
       if (check == 'x'){
 	matrix_mult(make_rotX(theta), transform);
       }
