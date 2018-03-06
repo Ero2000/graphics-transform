@@ -110,7 +110,6 @@ line
 150 140 0 150 140 100
 line
 150 80 0 150 80 100
-rotate
 z 20
 apply
 save
