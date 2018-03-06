@@ -62,8 +62,6 @@ rotate
 z 20
 rotate
 x 20
-rotate
-y 20
 apply
 save
 pic.png
