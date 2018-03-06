@@ -1,51 +1,16 @@
 line
-0 0 0 100 0 0
+250 0 0 100 0 0
 line
-100 0 0 100 100 0
+100 0 0 100 50 0
 line
-100 100 0 0 100 0
+100 50 0 0 50 0
 line
-0 100 0 0 0 0
+0 50 0 0 110 0
 line
-0 0 100 100 0 100
+0 110 0 20 110 0
 line
-100 0 100 100 100 100
+20 110 0 20 90 0
 line
-100 100 100 0 100 100
-line
-0 100 100 0 0 100
-line
-0 0 0 0 0 100
-line
-0 100 0 0 100 100
-line
-100 100 0 100 100 100
-line
-100 0 0 100 0 100
-display
-ident
-scale
-2 2 2
-apply
-display
-ident
-move
-100 100 0
-apply
-display
-ident
-rotate
-z 20
-rotate
-x 20
-rotate
-y 20
-apply
-display
-ident
-rotate
-y 20
-apply
-display
+20 90 0 50 100 0
 save
 pic.png
